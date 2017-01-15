@@ -25,10 +25,29 @@ from core import *
 
 # Creates a grid as a 2D array of True/False values (True =  traversable). Also returns the dimensions of the grid as a (columns, rows) list.
 def myCreateGrid(world, cellsize):
-	grid = None
-	dimensions = (0, 0)
-	### YOUR CODE GOES BELOW HERE ###
 
-	### YOUR CODE GOES ABOVE HERE ###
-	return grid, dimensions
+    # find the edges of the screen
+    corners = world.getPoints()
+    maxX = 0
+    maxY = 0
+    for x, y in corners:
+        if x > maxX:
+            maxX = x
+        if y > maxY:
+            maxY = y
 
+    # determine the number of rows and columns needed
+    ### ask on piazza about intersection with boundaries and floor/ceil
+    row = int(math.floor(maxX / cellsize))
+    col = int(math.floor(maxY / cellsize))
+
+    print row, col
+
+    # generate 2D array of traversability
+    grid = [[True for i in xrange(col)] for j in xrange(row)]
+    dimensions = (row, col)
+
+    obstacles = world.getObstacles()
+    ### TO BE COMPLETED
+
+    return grid, dimensions
